@@ -7,7 +7,7 @@ packages = ["prompt_catalog_mcp"]
 
 [project]
 name = "prompt-catalog"
-version = "1.0.0"
+version = "1.1.0"
 description = "MCP server and CLI for the Prompt Catalog — an open-source prompt library for AI-assisted software development"
 readme = "README.md"
 license = "MIT"

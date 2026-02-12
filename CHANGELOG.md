@@ -30,6 +30,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Updated index.json with starter kit and case study references
 - Repository structure expanded with `server/`, `starter-kits/`, and `case-studies/` directories
 
+## [1.1.0] - 2026-02-12
+
+### Added
+- **4 new prompts** expanding the thinnest categories (34 → 38 total):
+  - `OPS-INC-001` — Incident Response and Runbook Design (operations)
+  - `OPS-CAP-001` — Capacity Planning and Scaling Strategy (operations)
+  - `TEST-PERF-001` — Performance Testing Strategy and Execution (testing)
+  - `TEST-SEC-001` — Security Testing Strategy (testing)
+- **CI schema validation job** — Dedicated GitHub Actions job that validates all prompt YAML files against the JSON schema and cross-references index.json, independent of the Python package
+- **E2E UX tests** with LLM judge evaluations
+
+### Changed
+- **Catalog loader logging** — Replaced silent `except Exception: pass` with `logger.warning()` in catalog.py so malformed files are reported instead of silently skipped
+- Updated `index.json` statistics, chain sequences (`full_sdlc`), and prompt entries for new prompts
+- Updated `OPS-MON-001` chain_position to link to new operations prompts
+- Updated README prompt count badge (35 → 38)
+- Expanded `.gitignore` with comprehensive Python/IDE/OS patterns
+
+### Fixed
+- Suppressed scoped false-positive warnings in `publish.yml` and `judge_eval.py`
+
 ## [1.0.0] - 2026-02-12
 
 ### Added
