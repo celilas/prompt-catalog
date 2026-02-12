@@ -72,6 +72,7 @@ def main(ctx):
                 "  [cyan]show[/cyan]      Show full prompt details\n"
                 "  [cyan]kit[/cyan]       Manage starter kits\n"
                 "  [cyan]start[/cyan]     Interactive guided mode\n"
+                "  [cyan]validate[/cyan]  Validate prompts, instructions, and index\n"
                 "  [cyan]serve[/cyan]     Start MCP server\n\n"
                 "Run [cyan]prompt-catalog COMMAND --help[/cyan] for details.",
                 title="prompt-catalog",
@@ -520,6 +521,102 @@ def interactive_start():
     console.print(
         "\n[dim]Tip: Run [cyan]prompt-catalog show PROMPT-ID[/cyan] to see full prompt details.[/dim]"
     )
+
+
+# ── validate ─────────────────────────────────────────────────────────
+
+
+@main.command("validate")
+@click.option("--prompts", "check_prompts", is_flag=True, help="Validate prompt YAML files only")
+@click.option("--instructions", "check_instructions", is_flag=True, help="Validate instruction files only")
+@click.option("--index", "check_index", is_flag=True, help="Validate index.json only")
+@click.option("--kits", "check_kits", is_flag=True, help="Validate starter kit references only")
+@click.option("--json-output", "json_out", is_flag=True, help="Output results as JSON")
+def validate(check_prompts, check_instructions, check_index, check_kits, json_out):
+    """Validate prompts, instructions, index, and starter kits."""
+    from .validator import validate_all, validate_prompts as vp, validate_instructions as vi
+    from .validator import validate_index as vidx, validate_kits as vk
+
+    root = _find_catalog_root()
+
+    # If no specific flag, validate everything
+    run_all = not (check_prompts or check_instructions or check_index or check_kits)
+
+    if run_all:
+        results = validate_all(root)
+    else:
+        results = {}
+        if check_prompts:
+            results["prompts"] = vp(root)
+        if check_instructions:
+            results["instructions"] = vi(root)
+        if check_index:
+            results["index"] = vidx(root)
+        if check_kits:
+            results["starter-kits"] = vk(root)
+
+    total_errors = sum(r.error_count for r in results.values())
+    total_warnings = sum(r.warning_count for r in results.values())
+    total_checked = sum(r.files_checked for r in results.values())
+    total_passed = sum(r.files_passed for r in results.values())
+
+    if json_out:
+        import json as jsonlib
+        out = {
+            "summary": {
+                "files_checked": total_checked,
+                "files_passed": total_passed,
+                "errors": total_errors,
+                "warnings": total_warnings,
+            },
+            "categories": {
+                cat: {
+                    "files_checked": r.files_checked,
+                    "files_passed": r.files_passed,
+                    "issues": [
+                        {"file": i.file, "message": i.message, "severity": i.severity}
+                        for i in r.issues
+                    ],
+                }
+                for cat, r in results.items()
+            },
+        }
+        click.echo(jsonlib.dumps(out, indent=2))
+    else:
+        console.print(Panel("[bold]Prompt Catalog Validation[/bold]", border_style="blue"))
+
+        for cat, r in results.items():
+            if r.ok and not r.issues:
+                console.print(
+                    f"\n[bold]{cat}[/bold]: "
+                    f"[green]✓ {r.files_passed}/{r.files_checked} files passed[/green]"
+                )
+            else:
+                console.print(
+                    f"\n[bold]{cat}[/bold]: "
+                    f"[{'red' if r.error_count else 'yellow'}]"
+                    f"{r.files_passed}/{r.files_checked} passed, "
+                    f"{r.error_count} error(s), {r.warning_count} warning(s)"
+                    f"[/{'red' if r.error_count else 'yellow'}]"
+                )
+                for issue in r.issues:
+                    color = "red" if issue.severity == "error" else "yellow"
+                    icon = "✗" if issue.severity == "error" else "⚠"
+                    console.print(f"  [{color}]{icon}[/{color}] {issue.file}: {issue.message}")
+
+        console.print()
+        if total_errors == 0:
+            console.print(
+                f"[bold green]✓ All checks passed[/bold green] "
+                f"({total_checked} files, {total_warnings} warnings)"
+            )
+        else:
+            console.print(
+                f"[bold red]✗ Validation failed[/bold red] "
+                f"({total_errors} errors, {total_warnings} warnings in {total_checked} files)"
+            )
+
+    sys.exit(1 if total_errors > 0 else 0)
 
 
 # ── serve ────────────────────────────────────────────────────────────

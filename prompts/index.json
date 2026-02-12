@@ -3,7 +3,7 @@
   "generated": "2026-02-12",
   "description": "Master index of all prompts in the Prompt Catalog for programmatic discovery and MCP server ingestion",
   "statistics": {
-    "total_prompts": 32,
+    "total_prompts": 34,
     "total_starter_kits": 6,
     "total_case_studies": 4,
     "categories": {
