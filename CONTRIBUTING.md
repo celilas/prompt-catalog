@@ -10,8 +10,9 @@ Thank you for your interest in contributing! This project thrives on community i
 2. **Choose the right directory** based on SDLC phase (`prompts/planning/`, `prompts/development/`, etc.)
 3. **Use the prompt template** — copy `prompts/_template.yaml` as your starting point
 4. **Follow the schema** — validate against `schema/prompt.schema.json`
-5. **Test your prompt** — try it with at least two different AI models
-6. **Submit a PR** with a clear description of what the prompt does and who it helps
+5. **Validate locally** — run `prompt-catalog validate` (see [Local Validation](#local-validation) below)
+6. **Test your prompt** — try it with at least two different AI models
+7. **Submit a PR** with a clear description of what the prompt does and who it helps
 
 ### Prompt Quality Standards
 
@@ -88,9 +89,46 @@ Examples: `PLAN-REQ-001`, `ARCH-MICRO-003`, `DEV-WEB-012`, `DOM-FINTECH-002`
 
 Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md). We are committed to providing a welcoming and inclusive experience for everyone.
 
+## Local Validation
+
+Install the CLI and run validation before submitting a PR:
+
+```bash
+cd server
+pip install -e ".[dev]"
+cd ..
+
+# Validate everything (prompts, instructions, index, starter kits)
+prompt-catalog validate
+
+# Validate specific categories
+prompt-catalog validate --prompts
+prompt-catalog validate --index
+prompt-catalog validate --kits
+
+# Run the test suite
+cd server
+python -m pytest tests/ -v
+```
+
+The validator checks:
+- **Prompts** — valid YAML, conforms to JSON schema, variables match between prompt text and definitions
+- **Instructions** — valid frontmatter with required `name` field
+- **Index** — all referenced files exist, no duplicate IDs, no orphan YAML files
+- **Starter kits** — all prompt and instruction references resolve to real entries
+
+## CI Pipeline
+
+Every PR automatically runs:
+- **pytest** on Python 3.11 + 3.12
+- **`prompt-catalog validate`** against the full catalog
+- **yamllint** on all YAML files (no trailing spaces, max 500 char lines)
+
+All checks must pass before merge.
+
 ## Review Process
 
-1. **Automated validation** — Schema validation runs on all PRs
+1. **Automated validation** — Schema validation and yamllint run on all PRs
 2. **Adversarial evaluation** — Prompts are tested with adversarial inputs and judged against rubrics
 3. **Peer review** — At least one maintainer reviews content quality
 4. **AI testing** — Prompts are tested against representative scenarios
