@@ -13,6 +13,7 @@ import os
 
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
+from pydantic import AnyUrl
 from mcp.types import (
     GetPromptResult,
     Prompt,
@@ -48,7 +49,7 @@ async def list_resources() -> list[Resource]:
     for p in catalog.prompts.values():
         resources.append(
             Resource(
-                uri=f"prompt-catalog://prompts/{p.category}/{p.id}",
+                uri=AnyUrl(f"prompt-catalog://prompts/{p.category}/{p.id}"),
                 name=p.title,
                 description=p.description,
                 mimeType="text/yaml",
@@ -58,7 +59,7 @@ async def list_resources() -> list[Resource]:
     for inst in catalog.instructions.values():
         resources.append(
             Resource(
-                uri=f"prompt-catalog://instructions/{inst.scope}/{inst.stem}",
+                uri=AnyUrl(f"prompt-catalog://instructions/{inst.scope}/{inst.stem}"),
                 name=inst.name,
                 description=inst.description,
                 mimeType="text/markdown",
@@ -69,19 +70,20 @@ async def list_resources() -> list[Resource]:
 
 
 @app.read_resource()
-async def read_resource(uri: str) -> str:
+async def read_resource(uri: AnyUrl) -> str:
     catalog = _get_catalog()
+    uri_str = str(uri)
 
-    if uri.startswith("prompt-catalog://prompts/"):
-        parts = uri.replace("prompt-catalog://prompts/", "").split("/")
+    if uri_str.startswith("prompt-catalog://prompts/"):
+        parts = uri_str.replace("prompt-catalog://prompts/", "").split("/")
         prompt_id = parts[-1] if parts else ""
         entry = catalog.prompts.get(prompt_id)
         if entry:
             return entry.file_path.read_text(encoding="utf-8")
         raise ValueError(f"Prompt not found: {prompt_id}")
 
-    if uri.startswith("prompt-catalog://instructions/"):
-        parts = uri.replace("prompt-catalog://instructions/", "").split("/")
+    if uri_str.startswith("prompt-catalog://instructions/"):
+        parts = uri_str.replace("prompt-catalog://instructions/", "").split("/")
         stem = parts[-1] if parts else ""
         entry = catalog.instructions.get(stem)
         if entry:
