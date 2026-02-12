@@ -1,0 +1,44 @@
+id: api-backend
+name: API Backend Service
+description: >
+  Backend API service (REST or GraphQL) that serves frontends, mobile apps,
+  or third-party integrations. Focused on API design, data modeling,
+  authentication, rate limiting, and operational monitoring. No frontend —
+  just the API layer and infrastructure.
+target_audience: >
+  Backend developers building API services. Covers standalone microservices,
+  BFF (Backend for Frontend) patterns, and public API platforms.
+
+prompts:
+  # Planning
+  - PLAN-REQ-001          # Requirements from API consumers
+  - PLAN-REQ-002          # Non-functional (throughput, latency, availability)
+
+  # Architecture
+  - ARCH-SYS-001          # Service architecture
+  - ARCH-DATA-001         # Database and caching layer
+
+  # Development
+  - DEV-API-001           # REST API design (the core prompt)
+
+  # Security
+  - SEC-THREAT-001        # API attack surface (auth, injection, rate limiting)
+  - SEC-CODE-001          # Secure coding practices
+
+  # Testing
+  - TEST-UNIT-001         # Unit tests for business logic
+  - TEST-INT-001          # Contract tests, API integration tests
+
+instructions:
+  - guardrails/accuracy
+  - guardrails/security
+  - guardrails/performance        # API latency matters
+  - phases/design
+  - phases/testing
+
+tags:
+  - api
+  - backend
+  - rest
+  - graphql
+  - microservice

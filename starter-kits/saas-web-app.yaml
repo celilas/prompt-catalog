@@ -1,0 +1,53 @@
+id: saas-web-app
+name: SaaS Web Application
+description: >
+  Full-stack SaaS application with web frontend, API backend, database,
+  authentication, multi-tenancy, and CI/CD. Covers the most common project
+  type — web apps built with frameworks like Next.js, Rails, Django, or
+  Laravel that serve paying customers.
+target_audience: >
+  Full-stack developers building SaaS products. Suitable for solo founders
+  through mid-size teams. Assumes web deployment with a cloud database.
+
+prompts:
+  # Planning — start here
+  - PLAN-REQ-001          # Functional requirements
+  - PLAN-REQ-002          # Non-functional requirements (SLAs, scalability)
+  - PLAN-REQ-003          # User stories and acceptance criteria
+
+  # Architecture
+  - ARCH-SYS-001          # System architecture (monolith or modular monolith)
+  - ARCH-DATA-001         # Database schema and data modeling
+
+  # Development
+  - DEV-WEB-001           # Web app (frontend + backend)
+  - DEV-API-001           # API design (REST or tRPC)
+
+  # Security
+  - SEC-THREAT-001        # Threat model (auth, multi-tenant isolation)
+  - SEC-CODE-001          # Secure code review
+
+  # Testing
+  - TEST-UNIT-001         # Unit tests
+  - TEST-INT-001          # Integration and E2E tests
+
+  # Deployment
+  - DEPLOY-CICD-001       # CI/CD pipeline
+
+instructions:
+  # Load order matters — guardrails first
+  - guardrails/accuracy            # Prevent hallucination
+  - guardrails/security            # Security baseline
+  - platforms/web                  # Web-specific patterns
+  - phases/design                  # Architecture decisions
+  - phases/implementation          # Code quality
+  - phases/testing                 # Test strategy
+
+tags:
+  - saas
+  - web
+  - fullstack
+  - startup
+  - next.js
+  - rails
+  - django

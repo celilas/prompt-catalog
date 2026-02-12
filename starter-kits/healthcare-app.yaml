@@ -1,0 +1,61 @@
+id: healthcare-app
+name: Healthcare Application
+description: >
+  HIPAA-compliant healthcare application with HL7 FHIR support, PHI
+  protection, clinical safety considerations, and regulatory audit trails.
+  Covers EHR systems, patient portals, telemedicine, clinical decision
+  support, and healthcare data platforms.
+target_audience: >
+  Developers building healthcare software in the United States or other
+  regulated markets. Includes the healthcare domain prompt with HIPAA
+  technical safeguards mapping, FHIR guidance, and the compliance stack
+  required for handling Protected Health Information.
+
+prompts:
+  # Planning
+  - PLAN-REQ-001          # Requirements from clinicians, compliance officers
+  - PLAN-REQ-002          # NFRs: availability (99.99%), RPO=0, HIPAA audit
+
+  # Architecture
+  - ARCH-SYS-001          # System architecture with PHI boundaries
+  - ARCH-DATA-001         # FHIR-native data model, encryption at rest
+
+  # Domain-Specific
+  - DOM-HEALTHCARE-001    # HIPAA, HL7 FHIR, clinical safety, PHI handling
+  - DOM-COMPLIANCE-001    # Regulatory framework (HIPAA, HITECH, SOC 2)
+
+  # Development
+  - DEV-WEB-001           # Web frontend (patient portal, clinician dashboard)
+  - DEV-API-001           # FHIR API, HL7v2 interfaces
+
+  # Security
+  - SEC-THREAT-001        # PHI threat model (breach, insider, API abuse)
+  - SEC-CODE-001          # Secure code review — never log PHI
+
+  # Testing
+  - TEST-UNIT-001         # Clinical logic validation
+  - TEST-INT-001          # FHIR conformance, integration tests
+
+  # Deployment
+  - DEPLOY-IAC-001        # HIPAA-eligible cloud infrastructure
+
+instructions:
+  # Guardrails — maximum security for healthcare
+  - guardrails/accuracy            # Clinical accuracy is patient safety
+  - guardrails/security            # PHI protection baseline
+  - guardrails/compliance          # HIPAA regulatory compliance
+  - guardrails/performance
+  - guardrails/adversarial-evaluation  # Test PHI leakage scenarios
+  # Platform and phase
+  - platforms/cloud                # HIPAA-eligible cloud deployment
+  - phases/design                  # Architecture decisions
+  - phases/testing                 # Clinical validation testing
+
+tags:
+  - healthcare
+  - hipaa
+  - hl7-fhir
+  - clinical
+  - phi
+  - regulated
+  - patient-safety

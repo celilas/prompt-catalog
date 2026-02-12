@@ -4,6 +4,8 @@
   "description": "Master index of all prompts in the Prompt Catalog for programmatic discovery and MCP server ingestion",
   "statistics": {
     "total_prompts": 32,
+    "total_starter_kits": 6,
+    "total_case_studies": 4,
     "categories": {
       "planning": 4,
       "architecture": 4,
@@ -569,5 +571,81 @@
         "DOM-COMPLIANCE-001"
       ]
     }
-  }
+  },
+  "starter_kits": [
+    {
+      "id": "saas-web-app",
+      "name": "SaaS Web Application",
+      "description": "Full-stack SaaS application with web frontend, API backend, database, and CI/CD",
+      "file": "starter-kits/saas-web-app.yaml",
+      "prompt_count": 12,
+      "tags": ["saas", "web", "fullstack", "startup"]
+    },
+    {
+      "id": "api-backend",
+      "name": "API Backend Service",
+      "description": "Backend API service (REST or GraphQL) for frontends, mobile apps, or integrations",
+      "file": "starter-kits/api-backend.yaml",
+      "prompt_count": 9,
+      "tags": ["api", "backend", "rest", "graphql"]
+    },
+    {
+      "id": "mobile-app",
+      "name": "Mobile Application",
+      "description": "Native or cross-platform mobile application with API backend",
+      "file": "starter-kits/mobile-app.yaml",
+      "prompt_count": 10,
+      "tags": ["mobile", "ios", "android", "cross-platform"]
+    },
+    {
+      "id": "cloud-native",
+      "name": "Cloud-Native Microservices",
+      "description": "Distributed system with microservices, IaC, and full observability",
+      "file": "starter-kits/cloud-native.yaml",
+      "prompt_count": 11,
+      "tags": ["cloud-native", "microservices", "kubernetes"]
+    },
+    {
+      "id": "fintech-platform",
+      "name": "FinTech Platform",
+      "description": "Financial services with compliance, decimal arithmetic, and audit trails",
+      "file": "starter-kits/fintech-platform.yaml",
+      "prompt_count": 13,
+      "tags": ["fintech", "finance", "compliance", "regulated"]
+    },
+    {
+      "id": "healthcare-app",
+      "name": "Healthcare Application",
+      "description": "HIPAA-compliant clinical application with HL7 FHIR and PHI protection",
+      "file": "starter-kits/healthcare-app.yaml",
+      "prompt_count": 13,
+      "tags": ["healthcare", "hipaa", "fhir", "regulated"]
+    }
+  ],
+  "case_studies": [
+    {
+      "project": "Sentry",
+      "repo": "getsentry/sentry",
+      "domain": "Cloud-native SaaS",
+      "file": "case-studies/sentry-error-tracking.md"
+    },
+    {
+      "project": "Medplum",
+      "repo": "medplum/medplum",
+      "domain": "Healthcare",
+      "file": "case-studies/medplum-healthcare.md"
+    },
+    {
+      "project": "Maybe Finance",
+      "repo": "maybe-finance/maybe",
+      "domain": "FinTech",
+      "file": "case-studies/maybe-personal-finance.md"
+    },
+    {
+      "project": "Cal.com",
+      "repo": "calcom/cal.com",
+      "domain": "SaaS Web App",
+      "file": "case-studies/calcom-scheduling-saas.md"
+    }
+  ]
 }

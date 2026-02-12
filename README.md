@@ -90,7 +90,29 @@ prompt-catalog/
 │   ├── guardrails/                 # Cross-cutting concerns
 │   └── platforms/                  # Platform-specific guidance
 │
-└── mcp/                            # MCP server integration
+├── server/                         # MCP server + CLI (Python package)
+│   ├── pyproject.toml              # Package configuration
+│   ├── README.md                   # Installation & usage docs
+│   └── prompt_catalog_mcp/         # Python package
+│       ├── catalog.py              # Catalog loader & filter engine
+│       ├── server.py               # MCP server implementation
+│       └── cli.py                  # CLI tool (prompt-catalog command)
+│
+├── starter-kits/                   # Opinionated prompt+instruction bundles
+│   ├── saas-web-app.yaml           # Full-stack SaaS
+│   ├── api-backend.yaml            # API service
+│   ├── mobile-app.yaml             # Mobile application
+│   ├── cloud-native.yaml           # Microservices / cloud-native
+│   ├── fintech-platform.yaml       # FinTech with compliance
+│   └── healthcare-app.yaml         # HIPAA-compliant healthcare
+│
+├── case-studies/                   # Real-world project analyses
+│   ├── sentry-error-tracking.md    # Sentry — cloud-native SaaS
+│   ├── medplum-healthcare.md       # Medplum — healthcare/FHIR
+│   ├── maybe-personal-finance.md   # Maybe — personal finance
+│   └── calcom-scheduling-saas.md   # Cal.com — scheduling SaaS
+│
+└── mcp/                            # MCP integration guide
     ├── README.md                   # Integration guide
     └── server-config.json          # MCP server configuration
 ```
@@ -137,30 +159,85 @@ Instruction files are Markdown documents designed to be loaded as system-level c
 
 ## MCP Server Integration
 
-The catalog is designed for ingestion by [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) servers. The `mcp/` directory contains configuration and documentation for:
+The catalog ships with a working [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server. Install it once and every MCP-compatible AI client (Claude Desktop, VS Code, Cursor, etc.) can access all prompts and instructions as first-class resources.
 
-- Serving prompts as MCP resources
-- Providing instruction files as context
-- Filtering prompts by category, platform, skill level, or domain
-- Version-aware prompt retrieval
+```bash
+# Install
+cd server && pip install -e .
+
+# Start the server
+prompt-catalog serve
+```
+
+See [server/README.md](server/README.md) for Claude Desktop and VS Code configuration.
 
 ## Getting Started
 
+### Quick Start with the CLI
+
+The fastest way to get started is the interactive CLI:
+
+```bash
+# Install the CLI
+cd server && pip install -e .
+
+# Interactive guided mode — recommends prompts based on your project
+prompt-catalog start
+
+# List all prompts
+prompt-catalog list
+
+# Search by keyword
+prompt-catalog search "authentication"
+
+# View a specific prompt
+prompt-catalog show SEC-THREAT-001
+
+# List starter kits
+prompt-catalog kit list
+
+# Export a kit's prompts and instructions to your project
+prompt-catalog kit export saas-web-app --output ./my-project/.prompts
+```
+
+### Use a Starter Kit
+
+Don't know where to start? Pick a [starter kit](starter-kits/):
+
+| Kit | Best For |
+|-----|----------|
+| `saas-web-app` | Next.js, Rails, Django SaaS products |
+| `api-backend` | REST/GraphQL API services |
+| `mobile-app` | iOS, Android, Flutter, React Native |
+| `cloud-native` | Kubernetes, microservices, serverless |
+| `fintech-platform` | Banking, payments, trading (with compliance) |
+| `healthcare-app` | HIPAA, HL7 FHIR, clinical applications |
+
+### MCP Server Integration
+
+Serve the entire catalog as an MCP server for Claude Desktop, VS Code, or any MCP-compatible client:
+
+```bash
+prompt-catalog serve
+```
+
+See [server/README.md](server/README.md) for configuration details.
+
 ### Browse Prompts
 Navigate the `prompts/` directory organized by SDLC phase, or use the master `prompts/index.json` to search programmatically.
-
-### Use with an AI Agent
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/KevinRabun/prompt-catalog.git
-   ```
-2. Point your MCP server at the `mcp/server-config.json`
-3. Prompts and instructions become available as context
 
 ### Use Manually
 1. Find a relevant prompt in `prompts/`
 2. Fill in the `variables` with your project specifics
 3. Paste into your AI assistant of choice
+
+### Learn from Case Studies
+
+See how the catalog applies to real open-source projects in [case-studies/](case-studies/):
+- **Sentry** — Error tracking platform (microservices, multi-tenancy, observability)
+- **Medplum** — Healthcare infrastructure (HIPAA, FHIR, PHI)
+- **Maybe** — Personal finance app (decimal arithmetic, reconciliation)
+- **Cal.com** — Scheduling SaaS (timezone handling, OAuth, race conditions)
 
 ## Contributing
 

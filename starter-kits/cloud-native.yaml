@@ -1,0 +1,51 @@
+id: cloud-native
+name: Cloud-Native Microservices
+description: >
+  Distributed system with microservices, container orchestration, infrastructure
+  as code, and full observability. For teams building on Kubernetes, serverless,
+  or managed container platforms (ECS, Cloud Run, Azure Container Apps).
+  Includes service mesh, event-driven patterns, and multi-region deployment.
+target_audience: >
+  Platform engineers and backend teams building distributed systems.
+  Assumes familiarity with containers, CI/CD, and cloud providers.
+  Advanced skill level.
+
+prompts:
+  # Planning
+  - PLAN-REQ-001          # System requirements
+  - PLAN-REQ-002          # NFRs are critical (latency budgets, SLOs, RPO/RTO)
+
+  # Architecture
+  - ARCH-SYS-001          # Overall system design
+  - ARCH-CLOUD-001        # Cloud provider architecture
+  - ARCH-MICRO-001        # Microservices decomposition
+  - ARCH-DATA-001         # Polyglot persistence, event sourcing
+
+  # Development
+  - DEV-API-001           # Service-to-service APIs
+
+  # Security
+  - SEC-THREAT-001        # Distributed system threat model
+
+  # Testing
+  - TEST-INT-001          # Contract tests, chaos engineering
+
+  # Deployment & Operations
+  - DEPLOY-IAC-001        # Terraform/Bicep infrastructure
+  - DEPLOY-CICD-001       # Multi-service CI/CD
+
+instructions:
+  - guardrails/accuracy
+  - guardrails/security
+  - guardrails/performance        # Distributed systems need performance guardrails
+  - guardrails/cost-optimization  # Cloud costs scale with microservices
+  - platforms/cloud               # Cloud-specific patterns
+  - phases/design                 # Architecture decisions
+
+tags:
+  - cloud-native
+  - microservices
+  - kubernetes
+  - serverless
+  - distributed-systems
+  - infrastructure

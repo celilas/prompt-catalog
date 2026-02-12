@@ -1,0 +1,46 @@
+id: mobile-app
+name: Mobile Application
+description: >
+  Native or cross-platform mobile application with API backend. Covers
+  iOS, Android, Flutter, React Native, or .NET MAUI. Includes mobile-specific
+  concerns: offline-first, push notifications, app store deployment, and
+  platform-specific security.
+target_audience: >
+  Mobile developers building consumer or enterprise apps. Works for
+  single-platform (iOS or Android) and cross-platform (Flutter, React Native).
+
+prompts:
+  # Planning
+  - PLAN-REQ-001          # Requirements (mobile adds offline, notifications)
+  - PLAN-REQ-002          # Non-functional (battery, data usage, cold start)
+  - PLAN-REQ-003          # User stories with mobile context
+
+  # Architecture
+  - ARCH-SYS-001          # Client-server architecture
+  - ARCH-DATA-001         # Local + remote data, sync strategy
+
+  # Development
+  - DEV-MOB-001           # Mobile development (the core prompt)
+  - DEV-API-001           # Backend API for the mobile app
+
+  # Security
+  - SEC-THREAT-001        # Mobile threat model (certificate pinning, storage)
+  - SEC-CODE-001          # Mobile secure coding
+
+  # Testing
+  - TEST-UNIT-001         # Unit tests for business logic
+
+instructions:
+  - guardrails/accuracy
+  - guardrails/security
+  - platforms/android             # or platforms/ios — pick your platform
+  - phases/design
+  - phases/testing
+
+tags:
+  - mobile
+  - ios
+  - android
+  - flutter
+  - react-native
+  - cross-platform

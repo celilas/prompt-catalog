@@ -1,0 +1,60 @@
+id: fintech-platform
+name: FinTech Platform
+description: >
+  Financial services application with regulatory compliance, precise monetary
+  calculations, audit trails, and security hardening. Covers banking apps,
+  payment platforms, trading systems, lending, and personal finance tools.
+  Extends the SaaS web app stack with fintech-specific domain guidance.
+target_audience: >
+  Developers building financial applications. Includes the domain-specific
+  prompt for financial data integrity, compliance (PCI-DSS, SOX, KYC/AML),
+  and the additional guardrails required by financial regulators.
+
+prompts:
+  # Planning
+  - PLAN-REQ-001          # Requirements from financial stakeholders
+  - PLAN-REQ-002          # NFRs: transaction throughput, RPO=0, audit retention
+
+  # Architecture
+  - ARCH-SYS-001          # System architecture with financial subsystems
+  - ARCH-DATA-001         # Financial data schema (decimal types, audit tables)
+
+  # Domain-Specific
+  - DOM-FINTECH-001       # Financial data integrity, decimal arithmetic, reconciliation
+  - DOM-COMPLIANCE-001    # Regulatory compliance framework (PCI-DSS, SOX, KYC)
+
+  # Development
+  - DEV-WEB-001           # Web frontend (dashboards, admin panels)
+  - DEV-API-001           # API layer (payment endpoints, webhooks)
+
+  # Security
+  - SEC-THREAT-001        # Financial threat model (fraud, data theft, insider threat)
+  - SEC-CODE-001          # Secure code review with financial focus
+
+  # Testing
+  - TEST-UNIT-001         # Financial calculation boundary tests
+  - TEST-INT-001          # Payment flow integration tests
+
+  # Deployment
+  - DEPLOY-CICD-001       # CI/CD with compliance gates
+
+instructions:
+  # Guardrails — extra layers for financial software
+  - guardrails/accuracy
+  - guardrails/security
+  - guardrails/compliance         # Regulatory compliance guardrails
+  - guardrails/performance
+  - guardrails/adversarial-evaluation  # Stress-test financial logic
+  # Platform and phase
+  - platforms/web
+  - phases/design
+  - phases/testing                # Financial testing requirements
+
+tags:
+  - fintech
+  - finance
+  - payments
+  - banking
+  - compliance
+  - pci-dss
+  - regulated
